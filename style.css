@@ -1,0 +1,82 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Red Hat Text", sans-serif;
+  box-sizing: border-box;
+}
+body {
+  padding: 6%;
+  background-color: hsl(20, 50%, 98%);
+}
+.title {
+  margin-bottom: 10%;
+  color: hsl(14, 65%, 9%);
+  align-self: flex-start;
+}
+.dessert-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dessertCard {
+  position: relative;
+
+  margin-bottom: 8%;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 86vw;
+}
+.dessertImage {
+  margin-bottom: 20px;
+  display: flex;
+}
+.dessertImage img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+.dessertName {
+  color: hsl(14, 65%, 9%);
+  font-weight: 600;
+}
+.category {
+  color: hsl(12, 20%, 44%);
+}
+.price {
+  color: hsl(14, 86%, 42%);
+  font-weight: 500;
+}
+.cart {
+  background-color: white;
+  padding: 8%;
+  border-radius: 4%;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  color: hsl(14, 86%, 42%);
+  gap: 2%;
+}
+.emptyimage {
+  background-image: url("assets/images/illustration-empty-cart.svg");
+  height: 30vh;
+  width: 100vw;
+  justify-self: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin: 3%;
+}
+.quantity {
+  font-size: 1.5em;
+  font-weight: 900;
+}
+.added-items {
+  color: hsl(7, 20%, 60%);
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6%;
+}
