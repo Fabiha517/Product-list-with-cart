@@ -2,13 +2,11 @@
 // This object keeps track of all products in the cart.
 // Key = productId (e.g. "product-0"), Value = quantity of that product
 
-const cartState = {};
+let cartState = {};
 
 // ------------------ UPDATE CART TOTAL ------------------
 // Adds up all product quantities in cartState and shows total in ".cart-quantity"
 function updateCartTotal() {
-	const cartContent = document.querySelector(".cartContent");
-
 	const total = Object.values(cartState).reduce((sum, qty) => sum + qty, 0);
 	document.querySelector(".cart-quantity").innerHTML = `(${total})`;
 }
@@ -280,6 +278,13 @@ document.addEventListener("DOMContentLoaded", () => {
       
       z-index: 1000;
     `;
+					const removeOverlay = document.createElement("div");
+					removeOverlay.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20" fill="none" viewBox="0 0 10 10"><path fill="currentColor" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/></svg>`;
+					removeOverlay.className = "removeOverlay";
+					// remove overlay
+					removeOverlay.addEventListener("click", () => {
+						overlay.remove();
+					});
 
 					const confirmation = document.createElement("div");
 					confirmation.className = "confirmation";
@@ -300,7 +305,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       `;
 
-      
 					clonedItems.querySelectorAll(".cart-item").forEach((item) => {
 						const name = item.querySelector(".name").textContent.trim();
 						const qty = item.querySelector(".itemquantity").textContent.trim();
@@ -311,8 +315,8 @@ document.addEventListener("DOMContentLoaded", () => {
 						);
 						const lineTotal = parseFloat(qty) * price;
 
-  item.innerHTML = "";
-            // create a NEW <img> for every product
+						item.innerHTML = "";
+						// create a NEW <img> for every product
 						const thumb = document.createElement("img");
 						thumb.className = "thumbnail";
 						// choose correct thumbnail
@@ -347,20 +351,51 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
     `;
+
 						// insert the thumbnail at the start of each cart-item
 						item.prepend(thumb);
 					});
+
 					// now put the whole clonedItems list inside confirmation-content
 					confirmation
 						.querySelector(".confirmation-content")
 						.appendChild(clonedItems);
 
-					//
-
 					overlay.appendChild(confirmation);
+					overlay.appendChild(removeOverlay);
 					document.body.appendChild(overlay);
+					const newOrder = document.querySelector(".newOrder");
+
+					newOrder.addEventListener("click", () => {
+						cartState = {};
+						updateCartTotal();
+						renderCart();
+						overlay.remove();
+
+						const btns = document.querySelectorAll(".addToCart");
+						btns.forEach((btn) => {
+							if (btn) {
+								btn.classList.remove("quantity-mode");
+								btn.innerHTML = `
+            <div class="cartIcon"><img src="assets/images/icon-add-to-cart.svg" alt=""></div>
+            <span>Add to Cart</span>`;
+								btn.style.backgroundColor = "";
+								btn.style.color = "";
+								btn.style.fontSize = "";
+								btn.style.border = "";
+								const dessertImages =
+									document.querySelectorAll(".dessertImage img");
+								dessertImages.forEach((dessertImage) => {
+									if (dessertImage) {
+										dessertImage.style.border = "";
+									}
+								});
+							}
+						});
+					});
 				});
 			}
+
 			confirmOrder();
 		});
 	});

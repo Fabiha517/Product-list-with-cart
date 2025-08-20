@@ -285,14 +285,10 @@ body {
 }
 .confirmation-content {
 	max-height: 90vh;
-	overflow-y: scroll;
+
+	overflow-y: auto;
 }
-.confirmation-content .name {
-	margin-bottom: 10px;
-}
-.confirmation-content .priceQnt {
-	line-height: normal;
-}
+
 .newOrder {
 	background-color: hsl(14, 86%, 42%);
 	color: #fff;
@@ -309,13 +305,41 @@ body {
 	background-color: hsl(14, 73%, 30%);
 	cursor: pointer;
 }
-.thumbnail{
-	height: 80px;
-	width: 80px;
+.thumbnail {
+	height: 50px;
+	width: 50px;
+	border-radius: 5px;
 }
-.confirmation-content .cart-item{
-	
+.confirmation-content .cart-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 20px;
+	width: 100%;
 }
+.confirmation-content .lineTotal {
+	justify-self: end;
+	font-size: 14px;
+	color: hsl(14, 65%, 9%);
+}
+.confirmation-content .namePriceWrapper {
+	width: 100%;
+}
+.removeOverlay {
+	position: absolute;
+	top: 7%;
+	right: 5%;
+
+	height: 20px;
+	width: 30px;
+	color: #f8eae7;
+}
+.removeOverlay:hover {
+	color: hsl(14, 73%, 30%);
+	cursor: pointer;
+}
+
 @media (min-width: 600px) {
 	.title {
 		margin-bottom: 2%;
@@ -371,6 +395,9 @@ body {
 	.confirmationTitle {
 		font-size: 35px;
 	}
+	.confirmation-content .lineTotal {
+		font-size: 16px;
+	}
 }
 @media (min-width: 1440px) {
 	.cart {
@@ -380,6 +407,9 @@ body {
 	}
 	.enjoy-text {
 		font-size: 17px;
+	}
+	.confirmation-total .order {
+		font-size: 16px;
 	}
 }
 @media (min-width: 2560px) {
@@ -398,11 +428,52 @@ body {
 	}
 	.addToCart {
 		bottom: 145px;
+		width: 200px;
+		height: 70px;
+		border-radius: 70px;
 	}
 	.addToCart span {
 		font-size: 25px;
 	}
 	.dessertInfo {
 		margin-top: 60px;
+	}
+	.name {
+		font-size: 30px;
+	}
+	.priceQnt {
+		line-height: 40px;
+	}
+	.remove svg{
+		height: 20px;
+		width: 20px;
+	}
+	.order{
+		font-size: 25px;
+	}
+	.enjoy-text {
+		font-size: 27px;
+	}
+	.thumbnail{
+		height: 90px;
+		width: 90px;
+	}
+	.confirmation-content .name{
+		font-size: 25px;
+	}
+	.confirmation-content .lineTotal{
+		font-size: 25px;
+	}
+	.confirmation-content .priceQnt{
+		line-height: 0;
+	}
+	.confirmation-total .order{
+		font-size: 25px;
+	}
+	.newOrder{
+		border-radius: 60px;
+	}
+	.confirmOrder{
+		border-radius: 60px;
 	}
 }
